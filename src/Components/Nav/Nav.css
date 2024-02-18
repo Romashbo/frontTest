@@ -68,6 +68,9 @@
     width: 160px;
 }
 
+
+
+
 @media (max-width: 925px) {
     .nav {
         width: 800px;

@@ -12,6 +12,7 @@
     border-top-right-radius: 30px;
     border-bottom-left-radius: 30px;
     cursor: pointer;
+
 }
 
 .post__table:hover {
@@ -28,7 +29,6 @@
 }
 
 .post__data--description {
-
     flex: 1;
 }
 
@@ -47,8 +47,6 @@
         font-size: 15px;
     }
 }
-
-
 
 .boardZero {
     border-bottom: 2px solid black;

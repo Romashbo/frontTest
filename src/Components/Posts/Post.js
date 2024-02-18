@@ -15,8 +15,6 @@ const Post = ({ }) => {
     const [boardFetch, boardLoading, boardError] = useFetching(async () => {
         const response = await BoardServer.getAll()
         setBoard(response.data)
-
-
     })
     const categories = Array.from(
         new Set(board.map((board) => board.status))
@@ -35,19 +33,13 @@ const Post = ({ }) => {
         label: type
     }))
 
-
-
     useEffect(() => {
         boardFetch()
     }, [])
 
-    // if (boardLoading === true && !board.length) {
-    //     return (<h3 className='boardZero'>`Обращений нет</h3>)
-    // }
     return (
         <>
             <Nav filterName={filterName} setFilterName={setFilterName} board={board} value={[selectedSort, typeSort]} options={[statusOptions, typeOption]} onChange={[(statusOptions) => setSelectedSort(statusOptions), (typeOption) => setTypeSort(typeOption)]} />
-
             {boardError && <h1 style={{ textAlign: "center", marginTop: "20px" }}>Произошла ошибка: {boardError}</h1>}
             {boardLoading ? <div style={{ marginTop: "30px" }}><Loader type="bubble-loop" bgColor="green" color="green" title={"Loading..."} size={100} /> </div> :
                 <div>
