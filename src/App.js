@@ -15,7 +15,6 @@ import BoardServer from "./api/BoardServer";
 function App() {
 
   const [createModal, setCreateModal] = useState(false)
-  // const searchAndSorted = usePosts(board, filter.sort, filter.query)
   const router = useLocation()
 
   const routerBack = useNavigate()
@@ -34,7 +33,7 @@ function App() {
         </div>
         :
         <div onClick={getBack} className="buttonNav">
-          <IoReturnDownBack style={{ marginLeft: "20px" }} size={30} />
+          <IoReturnDownBack className="buttonNav--icon" style={{ marginLeft: "20px" }} size={30} />
           <button>Назад</button>
         </div>
       }

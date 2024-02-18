@@ -2,7 +2,7 @@ import React from 'react'
 import cl from "../Posts/Board.module.css"
 import { useNavigate } from 'react-router-dom'
 
-const BoardList = ({ board, sortBoard }) => {
+const BoardList = ({ board, remove }) => {
 
     const rootClasses = [cl.myBoard]
     if (board.status === "Готово") {
@@ -29,7 +29,6 @@ const BoardList = ({ board, sortBoard }) => {
     }
 
     return (
-
         <table key={board.id} className='post'>
             <tr onClick={handleClick} className='post__table'>
                 <td className='post__data post__data--data'>{formatTime(board.date)}</td>

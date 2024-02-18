@@ -13,8 +13,10 @@
 
 @media (max-width: 815px) {
     .form {
-        width: 300px;
+        width: 400px;
         font-size: 10px;
+        gap: 0px;
+        margin: 0;
     }
 
     .form__description>textarea {
@@ -34,7 +36,12 @@
     }
 
     .form__button {
-        width: 150px;
+        width: 100px;
+    }
+
+    .form__button .btn {
+        padding: 5px;
+        font-size: 10px;
     }
 
     hr {
@@ -105,6 +112,7 @@ select:focus {
     width: 200px;
     font-size: 15px;
     border-radius: 15px;
+    font-weight: 500;
 
 }
 

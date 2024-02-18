@@ -28,6 +28,7 @@
 }
 
 .post__data--description {
+
     flex: 1;
 }
 
@@ -47,18 +48,11 @@
     }
 }
 
-@media (max-width: 815px) {
-    .post__data--description {
-        flex: 1;
-        font-size: 8px;
-    }
 
-    .post__table {
-        width: 500px;
-        font-size: 12px;
-    }
 
-    .post__data {
-        width: 80px;
-    }
+.boardZero {
+    border-bottom: 2px solid black;
+    text-align: center;
+    font-family: Montserrat;
+    font-weight: 300;
 }

@@ -5,6 +5,7 @@ import { useFetching } from '../../api/useFeetching'
 import BoardServer from '../../api/BoardServer'
 import Loader from "react-js-loader";
 import Nav from '../Nav/Nav'
+import { useNavigate } from 'react-router-dom'
 
 const Post = ({ }) => {
     const [board, setBoard] = useState([])
@@ -14,6 +15,7 @@ const Post = ({ }) => {
     const [boardFetch, boardLoading, boardError] = useFetching(async () => {
         const response = await BoardServer.getAll()
         setBoard(response.data)
+
 
     })
     const categories = Array.from(
@@ -33,21 +35,24 @@ const Post = ({ }) => {
         label: type
     }))
 
+
+
     useEffect(() => {
         boardFetch()
     }, [])
 
+    // if (boardLoading === true && !board.length) {
+    //     return (<h3 className='boardZero'>`Обращений нет</h3>)
+    // }
     return (
         <>
             <Nav filterName={filterName} setFilterName={setFilterName} board={board} value={[selectedSort, typeSort]} options={[statusOptions, typeOption]} onChange={[(statusOptions) => setSelectedSort(statusOptions), (typeOption) => setTypeSort(typeOption)]} />
 
             {boardError && <h1 style={{ textAlign: "center", marginTop: "20px" }}>Произошла ошибка: {boardError}</h1>}
-            {boardLoading ? <div style={{ marginTop: "30px" }}><Loader type="bubble-loop" bgColor="green" color="green" title={"Loading..."} size={100} /> </div> : <div>
-
-                {filterStatus.filter((board) => { return filterName.toLowerCase() === "" ? board : board.nameProblem.toLowerCase().includes(filterName) }).map((board) => <BoardList key={board.id} board={board} />)}
-
-
-            </div >}
+            {boardLoading ? <div style={{ marginTop: "30px" }}><Loader type="bubble-loop" bgColor="green" color="green" title={"Loading..."} size={100} /> </div> :
+                <div>
+                    {filterStatus.filter((board) => { return filterName.toLowerCase() === "" ? board : board.nameProblem.toLowerCase().includes(filterName) }).map((board) => <BoardList key={board.id} board={board} />)}
+                </div >}
 
         </>
     )

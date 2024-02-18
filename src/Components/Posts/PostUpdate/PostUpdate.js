@@ -1,19 +1,33 @@
 import React, { useEffect, useState } from 'react'
+import "../PostUpdate/PostUpdate.css"
 import { useFetching } from '../../../api/useFeetching'
 import BoardServer from '../../../api/BoardServer'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import Loader from "react-js-loader";
 import cl from "../../Posts/Board.module.css"
 
 
-const PostUpdate = () => {
+const PostUpdate = ({ }) => {
+    const router = useNavigate()
     const params = useParams()
     const [postId, setPostId] = useState({})
     const [fetchPostId, postIdLoading, postIdError] = useFetching(async (id) => {
         const response = await BoardServer.getById(id)
         setPostId(response.data)
     })
+    const remove = async (id) => {
+        const res = await fetch('https://65c73b49e7c384aada6e4d98.mockapi.io/api/v1/board/' + id, {
+            method: "DELETE",
+            headers: {
+                "Content-type": "application/json"
+            },
+        })
 
+        const data = await res.json()
+        if (data) {
+            router(`/board/`)
+        }
+    }
     useEffect(() => {
         fetchPostId(params.id)
     }, [])
@@ -54,7 +68,10 @@ const PostUpdate = () => {
                             <td className={`post__data post__data--status${rootClasses.join(' ')}`}>{postId.status}</td>
                         </tr>
                     </table>
-                    <div style={{ marginTop: "20px" }}><p>{postId.description}</p></div>
+                    <div className='item-desc' style={{ marginTop: "20px" }}><p>{postId.description}</p>
+                        <button onClick={() => remove(postId.id)} className='item-btn'>Удалить пост</button>
+                    </div>
+
                 </div>
 
             }
